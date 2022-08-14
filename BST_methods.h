@@ -38,6 +38,15 @@ BST *convertArrayToBST(vector<int> numeri){
     }
     return albero;
 }
+/*funzione che controlla se l'albero è un BST*/
+bool isABST(BSTNode *root){
+    if(!root) return true;
+    if(root->left && root->left->info > root->info) return false;
+    if(root->right && root->right->info < root->info) return false;
+    if(!isABST(root->left) || !isABST(root->right)) return false;
+    return true;
+}
+
 
 void stampaBST(BSTNode *bst){
     if(bst){

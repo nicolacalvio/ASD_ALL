@@ -21,5 +21,24 @@ pair<Tree*, int> returnGenericTreeWithLevels() {
 }
 
 BST* returnBSTTree(){
-    return nullptr;
+    BSTNode *radice = new BSTNode(8, nullptr);
+    radice->left = new BSTNode(3, radice);
+    radice->left->left = new BSTNode(1, radice->left);
+    radice->left->left->right = nullptr;
+    radice->left->left->left = nullptr;
+    radice->left->right = new BSTNode(6, radice->left);
+    radice->left->right->left = new BSTNode(4, radice->left->right);
+    radice->left->right->right = new BSTNode(7, radice->left->right);
+    radice->left->right->left->left= nullptr;
+    radice->left->right->left->right= nullptr;
+    radice->left->right->right->right= nullptr;
+    radice->left->right->right->left= nullptr;
+    radice->right = new BSTNode(10, radice);
+    radice->right->left = nullptr;
+    radice->right->right = new BSTNode(14, radice->right);
+    radice->right->right->right = nullptr;
+    radice->right->right->left = new BSTNode(13, radice->right->right);
+    radice->right->right->left->right= nullptr;
+    radice->right->right->left->left= nullptr;
+    return new BST(radice);
 }
