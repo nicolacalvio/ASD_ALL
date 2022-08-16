@@ -46,6 +46,60 @@ bool isABST(BSTNode *root){
     if(!isABST(root->left) || !isABST(root->right)) return false;
     return true;
 }
+BSTNode *tree_minimum(BSTNode *&tree){
+    if(tree){
+        if(tree->left){
+            return tree_minimum(tree->left);
+        }else{
+            return tree;
+        }
+    }
+    return nullptr;
+}
+void transplant(BST *&tree, BSTNode *&u, BSTNode *&v){
+    if(!u->p){
+        tree->root = v;
+    }else{
+        if(u == u->p->left){
+            u->p->left = v;
+        }else{
+            u->p->right = v;
+        }
+    }
+    if(v){
+        v->p = u->p;
+    }
+}
+
+void tree_delete(BST *&tree, BSTNode *&z){
+    if(!z->left){
+        transplant(tree, z, z->right);
+    }else if(!z->right){
+        transplant(tree, z, z->left);
+    }else{
+        BSTNode *y = tree_minimum(z->right);
+        if(y->p != z){
+            transplant(tree, y, y->right);
+            y->right = z->right;
+            z->right->p = y;
+        }
+        transplant(tree, z, y);
+        y->left = z->left;
+        if(y->left){
+            y->left->p = y;
+        }
+    }
+}
+
+void eliminaChiaviDispari(BST *&tree, BSTNode *nodo){
+    if(nodo){
+        if((nodo->info%2)!=0){
+            tree_delete(tree, nodo);
+        }
+        eliminaChiaviDispari(tree, nodo->left);
+        eliminaChiaviDispari(tree, nodo->right);
+    }
+}
 
 
 void stampaBST(BSTNode *bst){
