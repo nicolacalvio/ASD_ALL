@@ -5,8 +5,11 @@
 #include "alberi_di_test.h"
 #include "BST_methods.h"
 #include "dynamic.h"
+#include "ordinamenti.h"
 
 using namespace std;
+
+
 
 int main() {
      //    questo esercizio è l'esercizio 1 del 06/06/22
@@ -24,5 +27,11 @@ int main() {
        //    stampaBST(nuovo->root);
        //    cout << "----PRIMA-----" << endl;
       //     stampaBST(returnBSTTree()->root);
+    int arr[] = {3,2,6,12,34,11,90,7};
+    int n = 8;
+    stampaArray(arr, n);
+    insertionSort(arr, n);
+    cout << "--------array dopo sort----------";
+    stampaArray(arr, n);
     return 0;
 }
